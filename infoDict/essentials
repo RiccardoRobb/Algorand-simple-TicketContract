@@ -1,0 +1,24 @@
+Implementing Pure PoS. Let us now see how Algorand uses pure PoS for choosing the next block. Remember the trilemma? We want block generation to be simultaneously scalable, secure, and decentralized.
+
+At a very high level, in Algorand, a new block is constructed in two phases.
+
+    In the first phase, a single token is randomly selected, and its owner is the user who proposes the next block.
+    In the second phase, 1000 tokens are selected among all tokens currently in the system. The owners of these 1000 tokens are selected to be part of a phase-2 ‘committee,’ which approves the block proposed by the first user.
+
+Accordingly, some member of the committee may be chosen twice or more generally some k times, in which case, that member will have k votes in the committee to approve the next block.
+
+How to randomly choose:
+
+Algorand takes an unorthodox approach: the committee members select themselves. You may think “What? That is a terrible idea! Because if I am a bad actor, I am going to select myself to be a member of this committee. And the next. And the one after that…” But not so fast.
+
+To belong to the committee, one of your coins must win an individual, cryptographically fair lottery that you run in isolation — that is, without talking to anyone else — in the privacy of your own computer. And since the lottery is cryptographically fair, you cannot alter the chances of being selected in the slightest. (Not even a nation state with huge computational resources would be able to increase the probability of being selected.)
+
+Algorand’s Non-Forkable Chain.
+
+An additional advantage of Algorand’s technology is that its chain never forks. This is so because only one block can have the required threshold of committee votes. Accordingly, in Algorand all transactions are final. Once a block appears, you can count on it to be forever part of the chain. And if the new block contains a payment made to you, you may consider yourself paid and send the goods immediately.
+
+-----
+
+Development essentials:
+	-PyTeal
+	-Algorand Sendbox

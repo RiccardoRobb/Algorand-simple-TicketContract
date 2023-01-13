@@ -1,0 +1,89 @@
+#pragma version 6
+txn ApplicationID
+int 0
+==
+bnz main_l8
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l7
+txna ApplicationArgs 0
+byte "Generate ticket"
+==
+bnz main_l4
+err
+main_l4:
+global GroupSize
+int 1
+==
+gtxn 1 TypeEnum
+int pay
+==
+gtxn 1 Receiver
+global CreatorAddress
+==
+&&
+gtxn 1 Amount
+int 1
+==
+&&
+gtxn 1 Sender
+gtxn 0 Sender
+==
+&&
+&&
+bnz main_l6
+int 0
+return
+main_l6:
+byte "Number"
+byte "Number"
+app_global_get
+int 1
++
+app_global_put
+byte "Number"
+app_global_get
+int 1
++
+byte "Number"
+app_global_get
+==
+// ticket number not incremented
+assert
+int 1
+return
+main_l7:
+txn Sender
+global CreatorAddress
+==
+return
+main_l8:
+txn NumAppArgs
+int 3
+==
+// error on number of arg
+assert
+txn Note
+byte "ticket:uv1"
+==
+// error on txn note
+assert
+txna ApplicationArgs 1
+btoi
+int 0
+>
+// negative number not allowed
+assert
+byte "Type"
+txna ApplicationArgs 0
+app_global_put
+byte "Number"
+txna ApplicationArgs 1
+btoi
+app_global_put
+byte "Name"
+txna ApplicationArgs 2
+app_global_put
+int 1
+return
