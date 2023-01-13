@@ -34,11 +34,7 @@ cd sandbox<br></br>
 https://wallet.myalgo.com/new-account <br></br>
 **select** testnet <br></br>
 new account button <br></br>
-- <br></br>
+<br></br>
 **add funding** https://bank.testnet.algorand.network/
-
-# Create React Dapp
-
-
 
 </center>
