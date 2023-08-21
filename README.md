@@ -1,5 +1,9 @@
 <center>
 
+[Check for more info](./infoDict/)
+
+---
+
 # Create virtual environment
 python -m venv venv
 
